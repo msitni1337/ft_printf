@@ -21,7 +21,9 @@ int ft_printf(const char *fmt, ...)
 			continue ;
 		}
 		fmt = get_format(fmt, &format);
-		write_formatted(fmt, &format, ap, &print_c);
+		if (!format.conversion && !fmt)
+			return (-1);
+		write_formatted(&format, ap, &print_c);
 	}
 	return (print_c);
 }

@@ -48,9 +48,12 @@ int			ft_printf(const char *fmt, ...);
 int	is_char_in_set(const char c, const char*set);
 int check_fmt_is_valid(char c, t_format*format);
 void	reset_format(t_format*format);
-//void	write_char(const char**fmt, int*print_c);
 int ft_max(int a, int b);
+int ft_min(int a, int b);
 const char* get_format(const char *fmt, t_format*format);
-void write_formatted(const char*fmt, t_format*format, va_list ap, int*print_c);
+void write_formatted(/*const char*fmt, */t_format*format, va_list ap, int*print_c);
+void ft_repeat_char(char c, int count, int*print_c);
+int ft_strlen(const char*str);
+void ft_putnstr(char *s, int count, int*print_c);
 
 #endif
