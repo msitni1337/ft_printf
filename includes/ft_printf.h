@@ -2,6 +2,7 @@
 # define FT_PRINTF_H
 # define FFLAGS " #+-0"
 # define FCONVERSIONS "cspdiuxX%"
+# define NULL_STR "(null)"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>

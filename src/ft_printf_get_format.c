@@ -20,10 +20,13 @@ const char* get_flags(const char *fmt, t_format*format)
 }
 
 const char* get_min_width(const char *fmt, t_format*format)
-{	
+{
+	if (!(*fmt >= '0' && *fmt <= '9'))
+		return (fmt);
+	format->width = 0;
 	while (*fmt && (*fmt >= '0' && *fmt <= '9'))
 	{
-		format->width = (format->width * 10) + ('0' - *fmt);
+		format->width = (format->width * 10) + (*fmt - '0');
 		fmt++;
 	}
 	return (fmt);
@@ -37,7 +40,7 @@ const char* get_precision(const char *fmt, t_format*format)
 	format->precision = 0;
 	while (*fmt && (*fmt >= '0' && *fmt <= '9'))
 	{
-		format->precision = (format->precision * 10) + ('0' - *fmt);
+		format->precision = (format->precision * 10) + (*fmt - '0');
 		fmt++;
 	}
 	return (fmt);
@@ -55,6 +58,7 @@ const char *get_conversion(const char* fmt, t_format*format)
 
 const char* get_format(const char *fmt, t_format*format)
 {
+	fmt++;
 	reset_format(format);
 	fmt = get_flags(fmt, format);
 	fmt = get_min_width(fmt, format);

@@ -15,25 +15,29 @@ int main(int c, char**v)
 {
 	if (!(c - 1) || (c - 1) % 3 != 0)
 		return (print_usage(v[0]));
-
 	for (int i = 0; i < (c - 1) / 3; i++)
 	{
 		switch (v[(i * 3) + 1][0])
 		{
 			case 'i':
-					printf("\nGot %d writes.\n", printf(v[(i * 3) + 2], atoi(v[(i * 3) + 3])));
+					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2], atoi(v[(i * 3) + 3])));
+					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2], atoi(v[(i * 3) + 3])));
 				break;
 			case 'c':
-					printf("\nGot %d writes.\n", printf(v[(i * 3) + 2], v[(i * 3) + 3][0]));
+					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2], v[(i * 3) + 3][0]));
+					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2], v[(i * 3) + 3][0]));
 				break;
 			case 's':
-					printf("\nGot %d writes.\n", printf(v[(i * 3) + 2], v[(i * 3) + 3]));
+					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2], v[(i * 3) + 3]));
+					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2], v[(i * 3) + 3]));
 				break;
 			case 'n':
-					printf("\nGot %d writes.\n", printf(v[(i * 3) + 2], NULL));
+					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2], NULL));
+					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2], NULL));
 				break;
 			case '0':
-					printf("\nGot %d writes.\n", printf(v[(i * 3) + 2]));
+					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2]));
+					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2]));
 				break;
 			default:
 					return (print_usage(v[0]));

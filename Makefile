@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra -I$(INCLUDES)
 NAME = libftprintf.a
 
 
-test : tests.c $(NAME)
+a.out : tests.c $(NAME)
 	$(CC) -I$(INCLUDES) tests.c $(NAME)
 
 %.o : %.c
@@ -15,7 +15,7 @@ test : tests.c $(NAME)
 $(NAME): $(OBJ)
 	ar crs $(NAME) $(OBJ)
 
-all : $(NAME)
+all : $(NAME) a.out
 
 clean :
 	rm -f $(OBJ)

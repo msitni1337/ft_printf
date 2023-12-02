@@ -1,7 +1,5 @@
 #include "ft_printf.h"
 
-
-
 int ft_printf(const char *fmt, ...)
 {
 	va_list 	ap;
@@ -21,7 +19,7 @@ int ft_printf(const char *fmt, ...)
 			continue ;
 		}
 		fmt = get_format(fmt, &format);
-		if (!format.conversion && !fmt)
+		if (!format.conversion && !*fmt)
 			return (-1);
 		write_formatted(&format, ap, &print_c);
 	}
