@@ -2,13 +2,18 @@
 
 int print_usage(char*name)
 {
-	printf("Bad arguments. usage:\n");
-	printf("%s [ [i,c,s,n,0] [format] [value] ]...\n", name);
-	printf("i: to pass a number.\n");
-	printf("s: to pass a string.\n");
+	printf("Bad arguments.\n");
+	printf("\nusage: %s [ [i,c,s,n,0] [format] [value] ]...\n", name);
+	printf("i: to pass an int.\n");
+	printf("s: to pass a pointer to string.\n");
 	printf("n: to pass NULL.\n");
 	printf("0: to pass just the format.\n");
 	return 1;
+}
+
+void test_with_no_args(char*func_name, char*fmt ,int (*f)(const char*,...))
+{
+	printf("\n%s returns %d writes.\n", func_name, f(fmt)); 
 }
 
 int main(int c, char**v)
@@ -36,8 +41,9 @@ int main(int c, char**v)
 					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2], NULL));
 				break;
 			case '0':
-					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2]));
-					printf("\nyours returns %d writes.\n", ft_printf(v[(i * 3) + 2]));
+					
+					test_with_no_args("libc", v[(i * 3) + 2], &printf);
+					test_with_no_args("yours", v[(i * 3) + 2], &ft_printf);
 				break;
 			default:
 					return (print_usage(v[0]));

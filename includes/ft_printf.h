@@ -2,6 +2,9 @@
 # define FT_PRINTF_H
 # define FFLAGS " #+-0"
 # define FCONVERSIONS "cspdiuxX%"
+# define HEX_PREFIX "0x"
+# define LHEX_STR "0123456789abcdef"
+# define UHEX_STR "0123456789ABCDEF"
 # define NULL_STR "(null)"
 # include <stdarg.h>
 # include <stdio.h>
@@ -56,5 +59,8 @@ void write_formatted(/*const char*fmt, */t_format*format, va_list ap, int*print_
 void ft_repeat_char(char c, int count, int*print_c);
 int ft_strlen(const char*str);
 void ft_putnstr(char *s, int count, int*print_c);
+void ft_putnbr_base(unsigned long n, char*base, int base_count);
+unsigned int ft_get_digits_count(long n, unsigned int base_count);
+unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count);
 
 #endif

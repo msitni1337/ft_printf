@@ -32,15 +32,48 @@ void write_formatted_string(t_format*format, char*str, int*print_c)
 	}
 }
 
+//TODO: Refactor this & add positive sign writting..
+void write_formatted_ptr(t_format*format, unsigned long ptr, int*print_c)
+{
+	int ptr_digits_count;
+	int ptr_formatted_char_count;
+
+	ptr_digits_count = ft_get_digits_ucount(ptr, ft_strlen(LHEX_STR));
+	ptr_formatted_char_count = ft_max(ptr_digits_count, format->precision);
+	if (ptr)
+		ptr_formatted_char_count += ft_strlen(HEX_PREFIX);
+	if (format->align == RIGHT_ALIGN)
+	{
+		if (format->width > ptr_formatted_char_count)
+			ft_repeat_char(' ', format->width - ptr_formatted_char_count, print_c);
+		if (ptr)
+			ft_putnstr(HEX_PREFIX, ft_strlen(HEX_PREFIX), print_c);
+		if (format->precision > ptr_digits_count)
+			ft_repeat_char('0', format->precision - ptr_digits_count, print_c);
+		ft_putnbr_base(ptr, LHEX_STR, ft_strlen(LHEX_STR));
+	}
+	if (format->align == LEFT_ALIGN)
+	{
+		if (ptr)
+			ft_putnstr(HEX_PREFIX, ft_strlen(HEX_PREFIX), print_c);
+		if (format->precision > ptr_digits_count)
+			ft_repeat_char('0', format->precision - ptr_digits_count, print_c);
+		ft_putnbr_base(ptr, LHEX_STR, ft_strlen(LHEX_STR));
+		if (format->width > ptr_formatted_char_count)
+			ft_repeat_char(' ', format->width - ptr_formatted_char_count, print_c);
+	}
+	(*print_c) += ptr_digits_count;
+}
+
 void print_converted(t_format*format, va_list ap, int*print_c)
 {
 	if (format->conversion == 'c')
 		write_formatted_char(format, va_arg(ap, int), print_c);
 	else if (format->conversion == 's')
 		write_formatted_string(format, va_arg(ap, char *), print_c);
-/*	else if (format->conversion == 'p')
+	else if (format->conversion == 'p')
 		write_formatted_ptr(format, va_arg(ap, unsigned long), print_c);
-	else if (format->conversion == 'd' || format->conversion == 'i')
+/*	else if (format->conversion == 'd' || format->conversion == 'i')
 		write_formatted_number(format, va_arg(ap, int), print_c);
 	else if (format->conversion == 'u')
 		write_formatted_unumber(format, va_arg(ap, unsigned int), print_c);

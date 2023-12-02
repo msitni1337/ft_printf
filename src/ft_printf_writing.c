@@ -25,3 +25,14 @@ void ft_putnstr(char *s, int count, int*print_c)
 		i++;
 	}
 }
+
+void ft_putnbr_base(unsigned long n, char*base, int base_count)
+{
+	if (n < (unsigned long) base_count)
+	{
+		write(1, base + n, 1);	
+		return ;
+	}
+	ft_putnbr_base(n / 16, base, base_count);
+	ft_putnbr_base(n % 16, base, base_count);
+}

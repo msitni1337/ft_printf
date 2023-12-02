@@ -7,7 +7,7 @@ const char* get_flags(const char *fmt, t_format*format)
 		if (*fmt == '0')
 			format->is_zero_padded = 1337 - 42;
 		else if (*fmt == '#')
-			format->is_special = 1337 - 42;
+			format->is_special = ft_strlen(HEX_PREFIX);
 		else if (*fmt == '-')
 			format->align = LEFT_ALIGN;
 		else if (*fmt == ' ')
