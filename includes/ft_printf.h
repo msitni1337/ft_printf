@@ -6,6 +6,7 @@
 # define LHEX_STR "0123456789abcdef"
 # define UHEX_STR "0123456789ABCDEF"
 # define NULL_STR "(null)"
+# define NIL_STR "(nil)"
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -62,5 +63,6 @@ void ft_putnstr(char *s, int count, int*print_c);
 void ft_putnbr_base(unsigned long n, char*base, int base_count);
 unsigned int ft_get_digits_count(long n, unsigned int base_count);
 unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count);
+void write_formatted_ptr(t_format*format, unsigned long ptr, int*print_c);
 
 #endif
