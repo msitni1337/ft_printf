@@ -33,6 +33,19 @@ void ft_putnbr_base(unsigned long n, char*base, int base_count)
 		write(1, base + n, 1);	
 		return ;
 	}
-	ft_putnbr_base(n / 16, base, base_count);
-	ft_putnbr_base(n % 16, base, base_count);
+	ft_putnbr_base(n / base_count, base, base_count);
+	ft_putnbr_base(n % base_count, base, base_count);
+}
+
+void ft_putnbr_base_s(long n, char*base, int base_count)
+{
+	if (n < 0)
+		n = -n;
+	if (n < base_count)
+	{
+		write(1, base + n, 1);	
+		return ;
+	}
+	ft_putnbr_base(n / base_count, base, base_count);
+	ft_putnbr_base(n % base_count, base, base_count);
 }

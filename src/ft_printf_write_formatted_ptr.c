@@ -47,12 +47,12 @@ void write_formatted_ptr(t_format*format, unsigned long ptr, int*print_c)
 	if (format->align == RIGHT_ALIGN)
 	{
 		write_ptr_padding(format, formatted_char_count, print_c);
-		write_sign(format, print_c);
+		write_sign(format, 0, print_c);
 		write_ptr(ptr, format->precision, print_c);
 	}
 	if (format->align == LEFT_ALIGN)
 	{
-		write_sign(format, print_c);
+		write_sign(format, 0,print_c);
 		write_ptr(ptr, format->precision, print_c);
 		if (format->width > formatted_char_count)
 			ft_repeat_char(' ', format->width - formatted_char_count, print_c);

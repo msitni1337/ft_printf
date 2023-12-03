@@ -1,10 +1,12 @@
 #include "ft_printf.h"
 
-void write_sign(t_format*format, int*print_c)
+void write_sign(t_format*format, int is_negative, int*print_c)
 {
-	if (format->sign == SPACE)
+	if (is_negative)
+		ft_repeat_char('-', 1, print_c);
+	else if (format->sign == SPACE)
 		ft_repeat_char(' ', 1, print_c);
-	if (format->sign == PLUS)
+	else if (format->sign == PLUS)
 		ft_repeat_char('+', 1, print_c);
 }
 
