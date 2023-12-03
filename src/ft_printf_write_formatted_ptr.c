@@ -11,14 +11,6 @@ void write_ptr(unsigned long ptr, int precision, int*print_c)
 	ft_putnbr_base(ptr, LHEX_STR, ft_strlen(LHEX_STR));
 }
 
-void write_sign(t_format*format, int*print_c)
-{
-	if (format->sign == SPACE)
-		ft_repeat_char(' ', 1, print_c);
-	if (format->sign == PLUS)
-		ft_repeat_char('+', 1, print_c);
-}
-
 void write_ptr_padding(t_format*format, int ptr_formatted_char_count, int*print_c)
 {
 	if (!format->is_zero_padded && format->width > ptr_formatted_char_count)
@@ -51,7 +43,7 @@ void write_formatted_ptr(t_format*format, unsigned long ptr, int*print_c)
 	formatted_char_count = ft_strlen(HEX_PREFIX);
 	formatted_char_count += ft_max(digits_count, format->precision);
 	if (format->sign > NONE)
-		formatted_char_count += 1;
+		formatted_char_count++;
 	if (format->align == RIGHT_ALIGN)
 	{
 		write_ptr_padding(format, formatted_char_count, print_c);

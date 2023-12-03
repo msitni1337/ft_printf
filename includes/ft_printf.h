@@ -3,6 +3,7 @@
 # define FFLAGS " #+-0"
 # define FCONVERSIONS "cspdiuxX%"
 # define HEX_PREFIX "0x"
+# define DECI_STR "0123456789"
 # define LHEX_STR "0123456789abcdef"
 # define UHEX_STR "0123456789ABCDEF"
 # define NULL_STR "(null)"
@@ -56,13 +57,16 @@ void	reset_format(t_format*format);
 int ft_max(int a, int b);
 int ft_min(int a, int b);
 const char* get_format(const char *fmt, t_format*format);
-void write_formatted(/*const char*fmt, */t_format*format, va_list ap, int*print_c);
+void write_formatted(t_format*format, va_list ap, int*print_c);
 void ft_repeat_char(char c, int count, int*print_c);
 int ft_strlen(const char*str);
 void ft_putnstr(char *s, int count, int*print_c);
 void ft_putnbr_base(unsigned long n, char*base, int base_count);
 unsigned int ft_get_digits_count(long n, unsigned int base_count);
 unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count);
+void write_formatted_char(t_format*format, char c, int*print_c);
+void write_formatted_string(t_format*format, char*str, int*print_c);
 void write_formatted_ptr(t_format*format, unsigned long ptr, int*print_c);
+void write_sign(t_format*format, int*print_c);
 
 #endif

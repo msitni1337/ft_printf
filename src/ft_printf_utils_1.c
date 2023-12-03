@@ -1,5 +1,13 @@
 #include "ft_printf.h"
 
+void write_sign(t_format*format, int*print_c)
+{
+	if (format->sign == SPACE)
+		ft_repeat_char(' ', 1, print_c);
+	if (format->sign == PLUS)
+		ft_repeat_char('+', 1, print_c);
+}
+
 unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count)
 {
 	unsigned int count;
@@ -16,7 +24,9 @@ unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count)
 unsigned int ft_get_digits_count(long n, unsigned int base_count)
 {
 	unsigned int count;
-
+	
+	if (n < 0)
+		n = -n;
 	count = 1;
 	while (n >= base_count)
 	{

@@ -1,38 +1,34 @@
 #include "ft_printf.h"
 
-void write_formatted_char(t_format*format, char c, int*print_c)
-{
-	if (format->align == RIGHT_ALIGN)
-		ft_repeat_char(' ', format->width - 1, print_c);
-	ft_repeat_char(c, 1, print_c);
-	if (format->align == LEFT_ALIGN)
-		ft_repeat_char(' ', format->width - 1, print_c);
-}
-
-void write_formatted_string(t_format*format, char*str, int*print_c)
-{
-	int str_s;
+void	write_formatted_number(t_format*format, int nb, int*print_c)
+{	
+	int digits_count;
+	int formatted_char_count;
 	
-	if (!str && (format->precision >= ft_strlen(NULL_STR) || format->precision == -1))
-		str = NULL_STR;
-	str_s = ft_strlen(str);
-	if (format->precision != -1)
-		str_s = ft_min(format->precision, str_s);
+	digits_count = ft_get_digits_count(nb, ft_strlen(DECI_STR));
+	formatted_char_count = ft_max(format->precision, digits_count);
+	if (nb < 0 || format->sign > NONE)
+		formatted_char_count++;
+	STOPPED WORKING HERE (COPIED FROM PTR WRITTING WITH NO MODOFCATIONS):
+	[
 	if (format->align == RIGHT_ALIGN)
 	{
-		if (format->width > str_s)
-			ft_repeat_char(' ', format->width - str_s, print_c);
-		ft_putnstr(str, str_s, print_c);
+		write_ptr_padding(format, formatted_char_count, print_c);
+		write_sign(format, print_c);
+		write_ptr(ptr, format->precision, print_c);
 	}
 	if (format->align == LEFT_ALIGN)
 	{
-		ft_putnstr(str, str_s, print_c);
-		if (format->width > str_s)
-			ft_repeat_char(' ', format->width - str_s, print_c);
+		write_sign(format, print_c);
+		write_ptr(ptr, format->precision, print_c);
+		if (format->width > formatted_char_count)
+			ft_repeat_char(' ', format->width - formatted_char_count, print_c);
 	}
+	]
+	(*print_c) += digits_count;
 }
 
-void print_converted(t_format*format, va_list ap, int*print_c)
+void	write_converted(t_format*format, va_list ap, int*print_c)
 {
 	if (format->conversion == 'c')
 		write_formatted_char(format, va_arg(ap, int), print_c);
@@ -40,9 +36,9 @@ void print_converted(t_format*format, va_list ap, int*print_c)
 		write_formatted_string(format, va_arg(ap, char *), print_c);
 	else if (format->conversion == 'p')
 		write_formatted_ptr(format, va_arg(ap, unsigned long), print_c);
-/*	else if (format->conversion == 'd' || format->conversion == 'i')
+	else if (format->conversion == 'd' || format->conversion == 'i')
 		write_formatted_number(format, va_arg(ap, int), print_c);
-	else if (format->conversion == 'u')
+/*	else if (format->conversion == 'u')
 		write_formatted_unumber(format, va_arg(ap, unsigned int), print_c);
 	else if (format->conversion == 'x' || format->conversion == 'X')
 		write_formatted_hex(format, va_arg(ap, unsigned int), print_c);
@@ -54,10 +50,10 @@ void print_converted(t_format*format, va_list ap, int*print_c)
 */
 }
 
-void write_formatted(/*const char*fmt, */t_format*format, va_list ap, int*print_c)
+void write_formatted(t_format*format, va_list ap, int*print_c)
 {
 	if (format->conversion)
-		print_converted(format, ap, print_c);
+		write_converted(format, ap, print_c);
 /*	else
 		//Check if we reached end of fmt;
 		print_signature(format, print_c);
