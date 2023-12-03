@@ -22,9 +22,7 @@ void write_zero_hex(t_format*format, int*print_c)
 
 void write_hex_padding(t_format*format, int hex_formatted_char_count, int*print_c)
 {
-	if (!format->is_zero_padded || format->precision != -1)
-		ft_repeat_char(' ', format->width - hex_formatted_char_count, print_c);
-	if (!format->is_zero_padded && format->width > hex_formatted_char_count)
+	if (format->precision != -1 || (!format->is_zero_padded && format->width > hex_formatted_char_count))
 		ft_repeat_char(' ', format->width - hex_formatted_char_count, print_c);
 	if (format->is_zero_padded && format->precision == -1)
 	{
@@ -54,7 +52,7 @@ void write_hex(t_format*format, unsigned long nb, int*print_c)
 	*print_c += digits_count;
 }
 
-void write_formatted_hex(t_format*format, unsigned int nb, int*print_c)
+void write_formatted_hex_(t_format*format, unsigned int nb, int*print_c)
 {
 	int digits_count;
 	int formatted_char_count;
@@ -79,3 +77,10 @@ void write_formatted_hex(t_format*format, unsigned int nb, int*print_c)
 	}
 }
 
+void write_formatted_hex(t_format*format, unsigned int nb, int*print_c)
+{
+	if (!format->precision && !nb)
+		ft_repeat_char(' ', format->width, print_c);
+	else
+		write_formatted_hex_(format, nb, print_c);
+}

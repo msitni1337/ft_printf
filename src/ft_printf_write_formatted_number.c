@@ -9,7 +9,7 @@ void	write_padding_and_sign(t_format*format, int nb, int formatted_char_count, i
 		ft_repeat_char('0', format->width - formatted_char_count, print_c);
 }
 
-void	write_formatted_number(t_format*format, int nb, int*print_c)
+void	write_formatted_number_(t_format*format, int nb, int*print_c)
 {	
 	int digits_count;
 	int formatted_char_count;
@@ -35,4 +35,12 @@ void	write_formatted_number(t_format*format, int nb, int*print_c)
 			ft_repeat_char(' ', format->width - formatted_char_count, print_c);
 	}
 	(*print_c) += digits_count;
+}
+
+void	write_formatted_number(t_format*format, int nb, int*print_c)
+{
+	if (!format->precision && !nb)
+		ft_repeat_char(' ', format->width, print_c);
+	else
+		write_formatted_number_(format, nb, print_c);
 }

@@ -8,7 +8,7 @@ void	write_unumber_padding(t_format*format, int formatted_char_count, int*print_
 		ft_repeat_char('0', format->width - formatted_char_count, print_c);
 }
 
-void	write_formatted_unumber(t_format*format, unsigned int nb, int*print_c)
+void	write_formatted_unumber_(t_format*format, unsigned int nb, int*print_c)
 {	
 	int digits_count;
 	int formatted_char_count;
@@ -31,4 +31,13 @@ void	write_formatted_unumber(t_format*format, unsigned int nb, int*print_c)
 			ft_repeat_char(' ', format->width - formatted_char_count, print_c);
 	}
 	(*print_c) += digits_count;
+}
+
+void write_formatted_unumber(t_format*format, unsigned int nb, int*print_c)
+{
+	if (!format->precision && !nb)
+		ft_repeat_char(' ', format->width, print_c);
+	else
+		write_formatted_unumber_(format, nb, print_c);
+
 }
