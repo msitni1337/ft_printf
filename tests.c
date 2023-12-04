@@ -1,5 +1,7 @@
 #include "ft_printf.h"
 
+#define CUSTOM_TEST
+
 int print_usage(char*name)
 {
 	printf("Bad arguments.\n");
@@ -16,8 +18,20 @@ void test_with_no_args(char*func_name, char*fmt ,int (*f)(const char*,...))
 	printf("\n%s returns %d writes.\n", func_name, f(fmt)); 
 }
 
+#ifdef CUSTOM_TEST
+void custom_test()
+{
+	printf("\nlibc returns %d writes.\n", printf(PUT HERE YOUR TEST));
+	printf("\nyours returns %d writes.\n", ft_printf(PUT HERE YOUR TEST));
+	exit(0);
+}
+#endif
+
 int main(int c, char**v)
 {
+#ifdef CUSTOM_TEST
+	custom_test();
+#endif
 	if (!(c - 1) || (c - 1) % 3 != 0)
 		return (print_usage(v[0]));
 	for (int i = 0; i < (c - 1) / 3; i++)
