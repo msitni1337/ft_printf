@@ -22,13 +22,38 @@ void	write_converted(t_format*format, va_list ap, int*print_c)
 	}
 }
 
+void	print_signature(t_format*format, int*print_c)
+{
+	ft_repeat_char('%', 1, print_c);
+	if (format->is_special)
+		ft_repeat_char('%', 1, print_c);
+	if (format->sign == SPACE)
+		ft_repeat_char(' ', 1, print_c);
+	if (format->sign == PLUS)
+		ft_repeat_char('+', 1, print_c);
+	if (format->align == LEFT_ALIGN)
+		ft_repeat_char('-', 1, print_c);
+	else if (format->is_zero_padded)
+		ft_repeat_char('0', 1, print_c);
+	if (format->width != -1)
+	{
+		ft_putnbr_base_s(format->width, DECI_STR, ft_strlen(DECI_STR));
+		*print_c += ft_get_digits_ucount(format->width, ft_strlen(DECI_STR));
+	}
+	if (format->precision != -1)
+	{
+		ft_repeat_char('.', 1, print_c);
+		ft_putnbr_base_s(format->precision, DECI_STR, ft_strlen(DECI_STR));
+		*print_c += ft_get_digits_ucount(format->precision, ft_strlen(DECI_STR));
+	}
+}
+
 void write_formatted(t_format*format, va_list ap, int*print_c)
 {
 	if (format->conversion)
 		write_converted(format, ap, print_c);
-	/*	else
+	else
 	//Check if we reached end of fmt;
-	print_signature(format, print_c);
-	*/
+		print_signature(format, print_c);
 }
 

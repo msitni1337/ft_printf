@@ -1,15 +1,15 @@
 #include "ft_printf.h"
 
-#define CUSTOM_TEST
+//#define CUSTOM_TEST
 
 int print_usage(char*name)
 {
 	printf("Bad arguments.\n");
-	printf("\nusage: %s [ [i,c,s,n,0] [format] [value] ]...\n", name);
-	printf("i: to pass an int.\n");
-	printf("s: to pass a pointer to string.\n");
-	printf("n: to pass NULL.\n");
-	printf("0: to pass just the format.\n");
+	printf("\nusage: %s [ -[i,c,s,n,0] [format] [value] ]...\n", name);
+	printf("-i: to pass an int.\n");
+	printf("-s: to pass a pointer to string.\n");
+	printf("-n: to pass NULL.\n");
+	printf("-0: to pass just the format.\n");
 	return 1;
 }
 
@@ -36,7 +36,14 @@ int main(int c, char**v)
 		return (print_usage(v[0]));
 	for (int i = 0; i < (c - 1) / 3; i++)
 	{
-		switch (v[(i * 3) + 1][0])
+		printf("[test] [%d]:\n", i + 1);
+		if (ft_strlen(v[(i * 3) + 1]) != 2
+			|| v[(i * 3) + 1][0] != '-')
+		{
+			print_usage(v[0]);
+			continue;
+		}
+		switch (v[(i * 3) + 1][1])
 		{
 			case 'i':
 					printf("\nlibc returns %d writes.\n", printf(v[(i * 3) + 2], atoi(v[(i * 3) + 3])));

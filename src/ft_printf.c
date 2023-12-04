@@ -5,7 +5,7 @@ int ft_printf(const char *fmt, ...)
 	va_list 	ap;
 	int				print_c;
 	t_format	format;
-
+// TODO: Check Return On libc func.
 	if (!fmt)
 		return (0);
 	va_start(ap, fmt);
@@ -23,5 +23,6 @@ int ft_printf(const char *fmt, ...)
 			return (-1);
 		write_formatted(&format, ap, &print_c);
 	}
+	va_end(ap);
 	return (print_c);
 }
