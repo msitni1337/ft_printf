@@ -26,7 +26,7 @@ void	print_signature(t_format*format, int*print_c)
 {
 	ft_repeat_char('%', 1, print_c);
 	if (format->is_special)
-		ft_repeat_char('%', 1, print_c);
+		ft_repeat_char('#', 1, print_c);
 	if (format->sign == SPACE)
 		ft_repeat_char(' ', 1, print_c);
 	if (format->sign == PLUS)

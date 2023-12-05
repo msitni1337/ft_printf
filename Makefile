@@ -17,6 +17,8 @@ $(NAME): $(OBJ)
 
 all : $(NAME) a.out
 
+bonus : all
+
 clean :
 	rm -f $(OBJ)
 
