@@ -21,8 +21,8 @@ void test_with_no_args(char*func_name, char*fmt ,int (*f)(const char*,...))
 #ifdef CUSTOM_TEST
 void custom_test()
 {
-	printf("\nlibc returns %d writes.\n", printf(PUT HERE YOUR TEST));
-	printf("\nyours returns %d writes.\n", ft_printf(PUT HERE YOUR TEST));
+	printf("\nlibc returns %d writes.\n", printf(NULL));
+	printf("\nyours returns %d writes.\n", ft_printf(NULL));
 	exit(0);
 }
 #endif

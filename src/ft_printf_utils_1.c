@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils_1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:40:51 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:40:52 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void write_sign(t_format*format, int is_negative, int*print_c)
+void	write_sign(t_format *format, int is_negative, int *print_c)
 {
 	if (is_negative)
 		ft_repeat_char('-', 1, print_c);
@@ -10,9 +22,9 @@ void write_sign(t_format*format, int is_negative, int*print_c)
 		ft_repeat_char('+', 1, print_c);
 }
 
-unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count)
+unsigned int	ft_get_digits_ucount(unsigned long n, unsigned int base_count)
 {
-	unsigned int count;
+	unsigned int	count;
 
 	count = 1;
 	while (n >= base_count)
@@ -20,13 +32,13 @@ unsigned int ft_get_digits_ucount(unsigned long n, unsigned int base_count)
 		n /= base_count;
 		count++;
 	}
-	return count;
+	return (count);
 }
 
-unsigned int ft_get_digits_count(long n, unsigned int base_count)
+unsigned int	ft_get_digits_count(long n, unsigned int base_count)
 {
-	unsigned int count;
-	
+	unsigned int	count;
+
 	if (n < 0)
 		n = -n;
 	count = 1;
@@ -35,12 +47,12 @@ unsigned int ft_get_digits_count(long n, unsigned int base_count)
 		n /= base_count;
 		count++;
 	}
-	return count;
+	return (count);
 }
 
-int ft_strlen(const char*str)
+int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str && str[i])

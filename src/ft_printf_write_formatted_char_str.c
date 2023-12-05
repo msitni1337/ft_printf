@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_write_formatted_char_str.c               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:41:00 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:41:02 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void write_formatted_char(t_format*format, char c, int*print_c)
+void	write_formatted_char(t_format *format, char c, int *print_c)
 {
 	if (format->align == RIGHT_ALIGN)
 		ft_repeat_char(' ', format->width - 1, print_c);
@@ -9,11 +21,12 @@ void write_formatted_char(t_format*format, char c, int*print_c)
 		ft_repeat_char(' ', format->width - 1, print_c);
 }
 
-void write_formatted_string(t_format*format, char*str, int*print_c)
+void	write_formatted_string(t_format *format, char *str, int *print_c)
 {
-	int str_s;
-	
-	if (!str && (format->precision >= ft_strlen(NULL_STR) || format->precision == -1))
+	int	str_s;
+
+	if (!str && (format->precision >= ft_strlen(NULL_STR)
+			|| format->precision == -1))
 		str = NULL_STR;
 	str_s = ft_strlen(str);
 	if (format->precision != -1)
@@ -31,4 +44,3 @@ void write_formatted_string(t_format*format, char*str, int*print_c)
 			ft_repeat_char(' ', format->width - str_s, print_c);
 	}
 }
-

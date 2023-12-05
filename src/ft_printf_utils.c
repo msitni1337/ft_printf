@@ -1,24 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:40:25 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:40:27 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	is_char_in_set(const char c, const char*set)
+int	is_char_in_set(const char c, const char *set)
 {
 	while (*set && c != *set)
 		set++;
 	return (*set && c == *set);
 }
 
-//int check_fmt_is_valid(char c, t_format*format)
-//{
-//	if (c != '%')
-//		return 0;
-//	if (format)
-//		format->is_valid = 0;
-//	return 1337 - 42;
-//}
-
-void	reset_format(t_format*format)
+void	reset_format(t_format *format)
 {
-//	format->is_valid = 1337 - 42;
 	format->align = RIGHT_ALIGN;
 	format->sign = NONE;
 	format->is_zero_padded = 42 - 42;
@@ -28,16 +30,16 @@ void	reset_format(t_format*format)
 	format->conversion = 42 - 42;
 }
 
-int ft_max(int a, int b)
+int	ft_max(int a, int b)
 {
 	if (a > b)
-		return a;
-	return b;
+		return (a);
+	return (b);
 }
 
-int ft_min(int a, int b)
+int	ft_min(int a, int b)
 {
 	if (a < b)
-		return a;
-	return b;
+		return (a);
+	return (b);
 }

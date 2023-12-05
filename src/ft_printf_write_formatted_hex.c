@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_write_formatted_hex.c                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:41:04 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:41:05 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void write_zero_hex(t_format*format, int*print_c)
+void	write_zero_hex(t_format *format, int *print_c)
 {
-	int repeat_count;
+	int	repeat_count;
 
 	repeat_count = ft_max(1, format->precision);
 	if (format->align == RIGHT_ALIGN)
@@ -17,12 +29,14 @@ void write_zero_hex(t_format*format, int*print_c)
 	{
 		ft_repeat_char('0', repeat_count, print_c);
 		ft_repeat_char(' ', format->width - repeat_count, print_c);
-	}	
+	}
 }
 
-void write_hex_padding(t_format*format, int hex_formatted_char_count, int*print_c)
+void	write_hex_padding(t_format *format, int hex_formatted_char_count,
+		int *print_c)
 {
-	if (format->precision != -1 || (!format->is_zero_padded && format->width > hex_formatted_char_count))
+	if (format->precision != -1 || (!format->is_zero_padded
+			&& format->width > hex_formatted_char_count))
 		ft_repeat_char(' ', format->width - hex_formatted_char_count, print_c);
 	if (format->is_zero_padded && format->precision == -1)
 	{
@@ -33,9 +47,9 @@ void write_hex_padding(t_format*format, int hex_formatted_char_count, int*print_
 	}
 }
 
-void write_hex(t_format*format, unsigned long nb, int*print_c)
+void	write_hex(t_format *format, unsigned long nb, int *print_c)
 {
-	int digits_count;
+	int	digits_count;
 
 	digits_count = ft_get_digits_ucount(nb, ft_strlen(LHEX_STR));
 	if (format->is_special)
@@ -52,10 +66,10 @@ void write_hex(t_format*format, unsigned long nb, int*print_c)
 	*print_c += digits_count;
 }
 
-void write_formatted_hex_(t_format*format, unsigned int nb, int*print_c)
+void	write_formatted_hex_(t_format *format, unsigned int nb, int *print_c)
 {
-	int digits_count;
-	int formatted_char_count;
+	int	digits_count;
+	int	formatted_char_count;
 
 	if (!nb)
 		return (write_zero_hex(format, print_c));
@@ -77,7 +91,7 @@ void write_formatted_hex_(t_format*format, unsigned int nb, int*print_c)
 	}
 }
 
-void write_formatted_hex(t_format*format, unsigned int nb, int*print_c)
+void	write_formatted_hex(t_format *format, unsigned int nb, int *print_c)
 {
 	if (!format->precision && !nb)
 		ft_repeat_char(' ', format->width, print_c);

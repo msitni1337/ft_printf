@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:40:35 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:40:40 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
-	va_list 	ap;
-	int				print_c;
+	va_list		ap;
+	int			print_c;
 	t_format	format;
-// TODO: Check Return On libc func.
+
 	if (!fmt)
-		return (0);
+		return (-1);
 	va_start(ap, fmt);
 	print_c = 0;
 	while (*fmt)

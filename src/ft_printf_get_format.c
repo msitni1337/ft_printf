@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_get_format.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msitni <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/05 23:40:42 by msitni            #+#    #+#             */
+/*   Updated: 2023/12/05 23:40:44 by msitni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-const char* get_flags(const char *fmt, t_format*format)
+const char	*get_flags(const char *fmt, t_format *format)
 {
 	while (*fmt && is_char_in_set(*fmt, FFLAGS))
 	{
@@ -19,7 +31,7 @@ const char* get_flags(const char *fmt, t_format*format)
 	return (fmt);
 }
 
-const char* get_min_width(const char *fmt, t_format*format)
+const char	*get_min_width(const char *fmt, t_format *format)
 {
 	if (!(*fmt >= '0' && *fmt <= '9'))
 		return (fmt);
@@ -32,7 +44,7 @@ const char* get_min_width(const char *fmt, t_format*format)
 	return (fmt);
 }
 
-const char* get_precision(const char *fmt, t_format*format)
+const char	*get_precision(const char *fmt, t_format *format)
 {
 	if (*fmt != '.')
 		return (fmt);
@@ -46,7 +58,7 @@ const char* get_precision(const char *fmt, t_format*format)
 	return (fmt);
 }
 
-const char *get_conversion(const char* fmt, t_format*format)
+const char	*get_conversion(const char *fmt, t_format *format)
 {
 	if (is_char_in_set(*fmt, FCONVERSIONS))
 	{
@@ -56,7 +68,7 @@ const char *get_conversion(const char* fmt, t_format*format)
 	return (fmt);
 }
 
-const char* get_format(const char *fmt, t_format*format)
+const char	*get_format(const char *fmt, t_format *format)
 {
 	fmt++;
 	reset_format(format);
