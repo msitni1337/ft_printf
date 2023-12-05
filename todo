@@ -1,2 +1,0 @@
-- Check norm for enums name specifications..
-- test this - > ./a.out "% 10.-20+s" 105 hellooo. weird output in libc func: % 10.0-20+s where the fuck that 0 after the period '.' came.??
